@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 
 //load env vars
 dotenv.config({path:'./config/config.env'});
@@ -23,6 +24,10 @@ app.use(cookieParser());
 
 //sanitize data
 app.use(mongoSanitize());
+
+//set security header
+app.use(helmet());
+
 
 //route files
 const hospitals = require('./routes/hospitals');
